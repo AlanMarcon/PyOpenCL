@@ -1,4 +1,5 @@
-# example provided by Roger Pau Monn'e
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from __future__ import print_function
 import pyopencl as cl
