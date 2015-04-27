@@ -1,0 +1,68 @@
+
+try:  1
+np:  <type 'numpy.ndarray'>
+time:  2.69128108025
+cl:  <class 'pyopencl.array.Array'>
+time:  0.971231937408
+fim...
+Filename: Calan.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+    82  459.105 MiB    0.000 MiB   	@profile
+    83                             	def cl_pow(self,array,exp):
+    84  459.105 MiB    0.000 MiB   		if type(array) == 'np.ndarray':	
+    85                             			array = self.np_into_cl(array)
+    86  459.105 MiB    0.000 MiB   		tmp = array
+    87  886.297 MiB  427.191 MiB   		for i in xrange(exp):
+    88  886.297 MiB    0.000 MiB   			array = array*tmp
+    89                             
+    90  886.297 MiB    0.000 MiB   		return array
+
+
+Filename: Calan.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   102   20.504 MiB -865.793 MiB   @profile
+   103                             def main():
+   104   31.773 MiB   11.270 MiB   	cla = openClFun()
+   105   31.773 MiB    0.000 MiB   	tam = np.array((7000,8000))
+   106                             
+   107  459.035 MiB  427.262 MiB   	np_a = np.random.randint(-32000,32000, size=tam)
+   108                             	#np_b = np.random.randint(-32000,32000, size=tam)
+   109                             	#np_c = np.random.randint(-32000,32000, size=tam)
+   110                             
+   111                             
+   112  459.035 MiB    0.000 MiB   	t = time.time()
+   113                             	r_np = cla.cl_pow(np_a,5)
+   114                             	#r_np = cla.cl_sub(np_a, np_b, np_c)
+   115  886.297 MiB  427.262 MiB   	print "np: ",type(r_np)
+   116  886.305 MiB    0.008 MiB   	print "time: ",time.time() - t
+   117                             
+   118                             	#cl_b = cla.np_into_cl(np_b)
+   119                             	#cl_c = cla.np_into_cl(np_c)
+   120                             
+   121                             	#print r_np
+   122                             	#np_b = None
+   123                             	#np_c = None
+   124  459.055 MiB -427.250 MiB   	r_np = None
+   125                             
+   126  886.355 MiB  427.301 MiB   	cl_a = cla.np_into_cl(np_a)
+   127  459.105 MiB -427.250 MiB   	np_a = None
+   128                             
+   129  459.105 MiB    0.000 MiB   	t = time.time()
+   130                             	r_cl = cla.cl_pow(cl_a,5)
+   131                             	#r_cl = cla.cl_sub(cl_a, cl_b, cl_c)
+   132  474.285 MiB   15.180 MiB   	print "cl: ",type(r_cl)
+   133  474.285 MiB    0.000 MiB   	print "time: ",time.time() - t
+   134                             	
+   135                             	#print r_cl
+   136  474.285 MiB    0.000 MiB   	cl_a = None
+   137                             	#cl_b = None
+   138                             	#cl_c = None
+   139  474.285 MiB    0.000 MiB   	r_cl = None
+   140  474.285 MiB    0.000 MiB   	print "fim..."
+   141  474.285 MiB    0.000 MiB   	sys.exit()
+
+

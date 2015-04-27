@@ -1,0 +1,74 @@
+[H[2J
+try:  1
+Pyopencl Ready
+
+---ADD---
+Comp add:  7000  x  8000
+NP tempo:  0.455390930176
+NP to CL:  0.851198911667
+OCL calc:  0.0128149986267
+CL to NP:  6.46694207191
+CL tempo:  7.41606283188
+
+---SUB---
+Comp sub:  7000  x  8000
+NP tempo:  0.431849002838
+NP to CL:  0.836647987366
+OCL calc:  0.000994920730591
+CL to NP:  6.80853796005
+CL tempo:  7.73183202744
+
+---MUL---
+Comp mul:  7000  x  8000
+NP tempo:  0.433717012405
+NP to CL:  0.790924072266
+OCL calc:  0.0040340423584
+CL to NP:  7.2020368576
+CL tempo:  8.09188294411
+
+---DIV---
+Comp div:  7000  x  8000
+NP tempo:  1.49911904335
+NP to CL:  0.811336994171
+OCL calc:  0.00401902198792
+CL to NP:  8.32379007339
+CL tempo:  9.23193788528
+
+---POW---
+Comp pow:  7000  x  8000
+NP tempo:  11.0819959641
+NP to CL:  0.402929067612
+OCL calc:  0.0230169296265
+CL to NP:  18.2453589439
+CL tempo:  18.7141759396
+Filename: Calan.py
+
+Line #    Mem usage    Increment   Line Contents
+================================================
+   266   20.602 MiB    0.000 MiB   @profile
+   267                             def main():
+   268   20.605 MiB    0.004 MiB   	tam = np.array((7000,8000))
+   269  447.867 MiB  427.262 MiB   	np_a = np.random.randint(-32000,32000, size=tam)
+   270  875.117 MiB  427.250 MiB   	np_b = np.random.randint(-32000,32000, size=tam)
+   271                             
+   272  886.375 MiB   11.258 MiB   	oclf = OpenClFun()
+   273                             	global oclf
+   274  888.371 MiB    1.996 MiB   	cpnpcl = CompareNpCl()
+   275                             
+   276                             
+   277  888.371 MiB    0.000 MiB   	print "\n---ADD---"
+   278  887.996 MiB   -0.375 MiB   	cpnpcl.comp_add(tam,np_a,np_b)
+   279                             	
+   280  887.996 MiB    0.000 MiB   	print "\n---SUB---"
+   281  888.379 MiB    0.383 MiB   	cpnpcl.comp_sub(tam,np_a,np_b)
+   282                             
+   283  888.379 MiB    0.000 MiB   	print "\n---MUL---"
+   284  888.332 MiB   -0.047 MiB   	cpnpcl.comp_mul(tam,np_a,np_b)
+   285                             
+   286  888.332 MiB    0.000 MiB   	print "\n---DIV---"
+   287  888.043 MiB   -0.289 MiB   	cpnpcl.comp_div(tam,np_a,np_b)
+   288                             
+   289  888.043 MiB    0.000 MiB   	print "\n---POW---"
+   290  888.531 MiB    0.488 MiB   	cpnpcl.comp_pow(tam,np_a)
+
+
